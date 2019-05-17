@@ -1,4 +1,4 @@
-# DieRoll
+# Die Roll
 
 DieRoll is a minimalist HTML/CSS/JS die-roller for tabletop RPGs.
 

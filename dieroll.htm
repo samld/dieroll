@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Die Roll</title>
+    <link rel="stylesheet" href="dieroll.css" />
+</head>
+<body>
+<div id="center">
+    <h1>Die Roll</h1>
+    <input type="text" id="diebox[0]" placeholder="e.g. 1d6+1" onchange="updateFormula(0)" onfocus="showFormula(0)" onblur="showTotal(0)" />
+    <input type="text" id="diebox[1]" placeholder="e.g. 1d6+1" onchange="updateFormula(1)" onfocus="showFormula(1)" onblur="showTotal(1)" />
+    <input type="text" id="diebox[2]" placeholder="e.g. 1d6+1" onchange="updateFormula(2)" onfocus="showFormula(2)" onblur="showTotal(2)" />
+    <input type="text" id="diebox[3]" placeholder="e.g. 1d6+1" onchange="updateFormula(3)" onfocus="showFormula(3)" onblur="showTotal(3)" />
+    <input type="text" id="diebox[4]" placeholder="e.g. 1d6+1" onchange="updateFormula(4)" onfocus="showFormula(4)" onblur="showTotal(4)" />
+    <input type="text" id="diebox[5]" placeholder="e.g. 1d6+1" onchange="updateFormula(5)" onfocus="showFormula(5)" onblur="showTotal(5)" />
+    <input type="text" id="diebox[6]" placeholder="e.g. 1d6+1" onchange="updateFormula(6)" onfocus="showFormula(6)" onblur="showTotal(6)" />
+    <input type="text" id="diebox[7]" placeholder="e.g. 1d6+1" onchange="updateFormula(7)" onfocus="showFormula(7)" onblur="showTotal(7)" />
+    <input type="text" id="diebox[8]" placeholder="e.g. 1d6+1" onchange="updateFormula(8)" onfocus="showFormula(8)" onblur="showTotal(8)" />
+    <input type="text" id="diebox[9]" placeholder="e.g. 1d6+1" onchange="updateFormula(9)" onfocus="showFormula(9)" onblur="showTotal(9)" />
+    <button onclick="rollDie()">Roll!</button>
+</div>
+<script>
+var dieFormulas = ['', '', '', '', '', '', '','','',''];
+var dieTotals = ['', '', '', '', '', '', '','','',''];
+
+function rollDie() {
+    let i, j, formulaNumbers, dieQty, dieFaces, dieBonusMalus, dieSign, dieTotal, dieBefore;
+    for(i = 0; i < 10; i++) {
+        if(dieFormulas[i] != '') {
+            formulaNumbers = dieFormulas[i].match(/[0-9]+/g);
+            dieQty = Number(formulaNumbers[0]);
+            dieFaces = Number(formulaNumbers[1]);
+            
+            dieTotal = 0;
+            dieBefore = '';
+            
+            for(j = 0; j < dieQty; j++) dieTotal += Math.floor(Math.random() * dieFaces + 1);
+            
+            
+            if(formulaNumbers.length == 3) {
+                if(dieQty == 1 && dieFaces == 20) dieBefore = ' (' + dieTotal + ')';
+                dieBonusMalus = Number(formulaNumbers[2]);
+                if(dieFormulas[i].search(/\+/g) > 0) dieTotal += dieBonusMalus;
+                if(dieFormulas[i].search("\-") > 0) dieTotal -= dieBonusMalus;
+            }
+            
+            dieTotals[i] = dieTotal + dieBefore;
+            showTotal(i);
+        } 
+        else dieTotals[i] = '';
+    }
+}
+
+function showFormula(diebox) {
+    let dieboxDOM = document.getElementById("diebox["+diebox+"]");
+    dieboxDOM.value = dieFormulas[diebox];
+}
+
+function showTotal(diebox) {
+    let dieboxDOM = document.getElementById("diebox["+diebox+"]");
+    if(dieTotals[diebox] != '') dieboxDOM.value = "="+dieTotals[diebox];
+}
+
+function updateFormula(diebox) {
+    let dieboxDOM = document.getElementById("diebox["+diebox+"]");
+    let formulaPattern = /^([0-9]+)d([0-9]+)([\+-][0-9]+){0,1}$/gi;
+    if(!formulaPattern.test(dieboxDOM.value)) {
+        dieFormulas[diebox] = '';
+        dieTotals[diebox] = '';
+        dieboxDOM.value = '';
+        return;
+    }
+    if(dieFormulas[diebox] != dieboxDOM.value) {
+        dieFormulas[diebox] = dieboxDOM.value;
+        dieTotals[diebox] = '';
+    }
+    return;
+}
+</script>
+</body>
+</html>

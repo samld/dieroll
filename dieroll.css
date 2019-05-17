@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=VT323');
+* {margin: 0; padding: 0}
+body {font: 1.2em 'VT323', monospace; background: black; color: #151515;}
+#center {position: absolute; top:50%; left: 50%; transform: translateX(-50%) translateY(-50%); padding: 40px; background: white; width: 600px; text-align: center; border-radius: 5px;}
+#center button { padding: 10px; margin: 20px; font: 1.5em 'VT323', monospace;cursor: pointer; border: 2px solid black; background: #ca1528; color: white; border-radius: 3px; border: 2px solid #151515;}
+#center button:hover {background: white; color: #ca1528;}
+#center input {width: 230px; padding: 5px; margin: 2px 0; border: 2px solid #151515; font: 1.2em 'VT323', monospace; }
+#center h1 {padding-right: 64px;background: white url("die-roll-logo.png") center right no-repeat; line-height: 64px; width: 3.5em; margin: 0 auto 20px auto;}

@@ -16,7 +16,3 @@ DieRoll is a minimalist HTML/CSS/JS die-roller for tabletop RPGs.
 ## Upcoming Features
 - Improving the flexibility of the rolling rules (à la roll20).
 - Listing of all the rules (help button).
-
-## Links
-
-- [Online version](http://www.samld.tech/pf/dieroll.htm)

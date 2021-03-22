@@ -12,7 +12,3 @@ DieRoll is a minimalist HTML/CSS/JS die-roller for tabletop RPGs.
 - Lightweight.
 - Free as in free speech and as in free beer.
 - Rolling with enter key.
-
-## Upcoming Features
-- Improving the flexibility of the rolling rules (à la roll20).
-- Listing of all the rules (help button).
